@@ -1,8 +1,6 @@
 package com.esia.timetable
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -12,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-//    private val sharedPrefFile = "kotlinsharedpreference"
+    //    private val sharedPrefFile = "kotlinsharedpreference"
     var deptSelectedItem: String = ""
     var yearSelectedItem: String = ""
     lateinit var checkBoxClick: CheckBox
@@ -22,16 +20,19 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-//        val sharedPreference: SharedPreference = SharedPreference(this)
-//        checkBoxClick = findViewById(R.id.check_box)
-//        if (checkBoxClick.isChecked) {
-//            sharedPreference.save("dept_sp", deptSelectedItem)
-//            sharedPreference.save("year_sp", yearSelectedItem)
-//        }
-//        if (deptSelectedItem != null && yearSelectedItem != null) {
-//            sharedPreference.getValueString("dept_sp", deptSelectedItem)
-//            sharedPreference.getValueString("year_sp", yearSelectedItem)
-//        }
+        checkBoxClick = findViewById(R.id.check_box)
+
+        val sharedPreference: SharedPreference = SharedPreference(this)
+
+        /*************************************** Buggy Code ***************************************/
+
+        if (deptSelectedItem != null && yearSelectedItem != null) {
+            sharedPreference.getValueString("dept_sp", deptSelectedItem)
+            sharedPreference.getValueString("year_sp", yearSelectedItem)
+            checkLink()
+        }
+
+        /*************************************** Buggy Code ***************************************/
 //        val sharedPreferences: SharedPreferences = this.getSharedPreferences(
 //            sharedPrefFile,
 //            Context.MODE_PRIVATE
@@ -65,11 +66,11 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         text_submit_xml.setOnClickListener {
-//            val did = "dept_id"
-//            val yid = "year_id"
-//            editor.putString(did, deptSelectedItem)
-//            editor.putString(yid, yearSelectedItem)
             checkLink()
+            if (checkBoxClick.isChecked) {
+                sharedPreference.save("dept_sp", deptSelectedItem)
+                sharedPreference.save("year_sp", yearSelectedItem)
+            }
         }
     }
 

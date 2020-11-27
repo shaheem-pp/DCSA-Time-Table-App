@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">webview tt</string>
+    <string name="app_name">ESIA TimeTable</string>
+
+    <string-array name="departments">
+        <item>Select Department</item>
+        <item>BCA</item>
+        <item>BSC CS</item>
+    </string-array>
+    <string-array name="year">
+        <item>Select Year</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+
+    </string-array>
 </resources>

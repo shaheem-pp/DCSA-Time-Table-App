@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPreference: SharedPreference = SharedPreference(this)
 
-        /*************************************** Buggy Code ***************************************/
+
 
         if (deptSelectedItem != null && yearSelectedItem != null) {
             deptSelectedItem = sharedPreference.getDValueString("dept_sp", deptSelectedItem).toString()
@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
             checkLink()
         }
 
-        /*************************************** Buggy Code ***************************************/
+
+
 //        val sharedPreferences: SharedPreferences = this.getSharedPreferences(
 //            sharedPrefFile,
 //            Context.MODE_PRIVATE

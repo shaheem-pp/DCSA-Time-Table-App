@@ -2,11 +2,12 @@ package com.esia.timetable
 
 
 import android.os.Bundle
+import android.webkit.WebSettings
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 class webViewActivity : AppCompatActivity() {
-    var noBack:Boolean = false
+    var noBack: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
@@ -14,6 +15,7 @@ class webViewActivity : AppCompatActivity() {
 //
 //        noBack = sharedPreference.getBValueBoolean("state",true) == true
         supportActionBar?.hide()
+//        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.refreshLayout)
 
 
         val myurl = intent.getStringExtra("urltoload")
@@ -27,10 +29,26 @@ class webViewActivity : AppCompatActivity() {
 
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
+        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
+
+//        swipeRefreshLayout.setOnRefreshListener {
+//
+//            // Your code goes here
+//            // In this code, we are just changing the text in the
+//            // textbox
+//            webView.reload()
+//
+//            // This line is important as it explicitly refreshes only once
+//            // If "true" it implicitly refreshes forever
+//            swipeRefreshLayout.isRefreshing = false
+//        }
+        refreshBtn.setOnClickListener {
+            webView.reload()
+        }
     }
 
     override fun onBackPressed() {
-        finish()
+        finishAffinity()
     }
 }

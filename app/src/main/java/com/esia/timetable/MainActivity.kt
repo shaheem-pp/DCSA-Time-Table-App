@@ -20,17 +20,17 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-//        checkBoxClick = findViewById(R.id.check_box)
+        checkBoxClick = findViewById(R.id.check_box)
 
-//        val sharedPreference: SharedPreference = SharedPreference(this)
+        val sharedPreference: SharedPreference = SharedPreference(this)
 
         /*************************************** Buggy Code ***************************************/
 
-//        if (deptSelectedItem != null && yearSelectedItem != null) {
-//            sharedPreference.getValueString("dept_sp", deptSelectedItem)
-//            sharedPreference.getValueString("year_sp", yearSelectedItem)
-//            checkLink()
-//        }
+        if (deptSelectedItem != null && yearSelectedItem != null) {
+            deptSelectedItem = sharedPreference.getDValueString("dept_sp", deptSelectedItem).toString()
+            yearSelectedItem = sharedPreference.getYValueString("year_sp", yearSelectedItem).toString()
+            checkLink()
+        }
 
         /*************************************** Buggy Code ***************************************/
 //        val sharedPreferences: SharedPreferences = this.getSharedPreferences(
@@ -67,14 +67,14 @@ class MainActivity : AppCompatActivity() {
         }
         text_submit_xml.setOnClickListener {
             checkLink()
-//            if (checkBoxClick.isChecked) {
-//                sharedPreference.save("dept_sp", deptSelectedItem)
-//                sharedPreference.save("year_sp", yearSelectedItem)
-//            }
+            if (checkBoxClick.isChecked) {
+                sharedPreference.dsave("dept_sp", deptSelectedItem)
+                sharedPreference.ysave("year_sp", yearSelectedItem)
+            }
         }
         text_web_xml.setOnClickListener {
             val i = Intent(applicationContext, webViewActivity::class.java)
-            i.putExtra("urltoload","https://sias.edu.in")
+            i.putExtra("urltoload", "https://sias.edu.in")
             startActivity(i)
         }
     }

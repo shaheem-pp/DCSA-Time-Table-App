@@ -1,16 +1,14 @@
 package com.esia.timetable
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.CheckBox
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    //    private val sharedPrefFile = "kotlinsharedpreference"
     var deptSelectedItem: String = ""
     var yearSelectedItem: String = ""
     lateinit var checkBoxClick: CheckBox
@@ -21,17 +19,26 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         checkBoxClick = findViewById(R.id.check_box)
+        var sp_department_xml = findViewById<Spinner>(R.id.sp_department_xml)
+        var sp_year_xml = findViewById<Spinner>(R.id.sp_year_xml)
+
 
         val sharedPreference: SharedPreference = SharedPreference(this)
 
 
 
         if (deptSelectedItem != null && yearSelectedItem != null) {
-            deptSelectedItem = sharedPreference.getDValueString("dept_sp", deptSelectedItem).toString()
-            yearSelectedItem = sharedPreference.getYValueString("year_sp", yearSelectedItem).toString()
+            deptSelectedItem =
+                sharedPreference.getDValueString("dept_sp", deptSelectedItem).toString()
+            yearSelectedItem =
+                sharedPreference.getYValueString("year_sp", yearSelectedItem).toString()
             checkLink()
         }
 
+
+//
+//
+//
 
 
 //        val sharedPreferences: SharedPreferences = this.getSharedPreferences(
@@ -39,6 +46,21 @@ class MainActivity : AppCompatActivity() {
 //            Context.MODE_PRIVATE
 //        )
 //        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+//        val dArrayAdapter : ArrayAdapter<Any?> = ArrayAdapter<Any?>(this,R.layout.color_spinner_layout,departmentArray)
+//        val yArrayAdapter : ArrayAdapter<Any?> = ArrayAdapter<Any?>(this,R.layout.color_spinner_layout,yearArray)
+
+
+        val departmentArray = resources.getStringArray(R.array.departments)
+        val yearArray = resources.getStringArray(R.array.year)
+
+        if (sp_department_xml != null) {
+            val adapter = ArrayAdapter(
+                this,
+                R.layout.spinnerlayout, departmentArray
+            )
+            adapter.setDropDownViewResource(R.layout.dropdownlayout)
+            sp_department_xml.adapter = adapter
+        }
 
         sp_department_xml.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -53,6 +75,16 @@ class MainActivity : AppCompatActivity() {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+
+        if (sp_year_xml != null) {
+            val adapter = ArrayAdapter(
+                this,
+                R.layout.spinnerlayout, yearArray
+            )
+            adapter.setDropDownViewResource(R.layout.dropdownlayout)
+            sp_year_xml.adapter = adapter
+        }
+
         sp_year_xml.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 adapterView: AdapterView<*>?,
@@ -71,11 +103,16 @@ class MainActivity : AppCompatActivity() {
             if (checkBoxClick.isChecked) {
                 sharedPreference.dsave("dept_sp", deptSelectedItem)
                 sharedPreference.ysave("year_sp", yearSelectedItem)
+                val k = Intent(applicationContext,webViewActivity::class.java)
+                k.putExtra("state",true)
+                startActivity(k)
             }
         }
         text_web_xml.setOnClickListener {
-            val i = Intent(applicationContext, webViewActivity::class.java)
-            i.putExtra("urltoload", "https://sias.edu.in")
+//            val i = Intent(applicationContext, webViewActivity::class.java)
+//            i.putExtra("urltoload", "https://aquibe.github.io/e-timetable/")
+//            startActivity(i)
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://aquibe.github.io/e-timetable/"))
             startActivity(i)
         }
     }
@@ -90,20 +127,20 @@ class MainActivity : AppCompatActivity() {
             "BCA" -> if (yearSelectedItem == "" || yearSelectedItem == "Select Year") {
                 Toast.makeText(this, "Enter your Year", Toast.LENGTH_SHORT).show()
             } else if (yearSelectedItem.equals("1")) {
-                linkMakerFun("https://hadi7653.github.io/timetable/time.html?c=BCA&y=1&f=bca")
+                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bca&year=1")
             } else if (yearSelectedItem.equals("2")) {
-                linkMakerFun("https://hadi7653.github.io/timetable/time.html?c=BCA&y=2&f=bca")
+                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bca&year=2")
             } else if (yearSelectedItem.equals("3")) {
-                linkMakerFun("https://hadi7653.github.io/timetable/time.html?c=BCA&y=3&f=bca")
+                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bca&year=3")
             }
             "BSC CS" -> if (yearSelectedItem == "" || yearSelectedItem == "Select Year") {
                 Toast.makeText(this, "Enter your Year", Toast.LENGTH_SHORT).show()
             } else if (yearSelectedItem.equals("1")) {
-                linkMakerFun("http://hadi7653.github.io/timetable/time.html?c=B.Sc.Computer-science&y=1&f=cs")
+                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bcs&year=1")
             } else if (yearSelectedItem.equals("2")) {
-                linkMakerFun("https://hadi7653.github.io/timetable/time.html?c=B.Sc.Computer-science&y=2&f=cs")
+                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bcs&year=2")
             } else if (yearSelectedItem.equals("3")) {
-                linkMakerFun("https://hadi7653.github.io/timetable/time.html?c=B.Sc.Computer-science&y=3&f=cs")
+                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bcs&year=3")
             }
 
         }

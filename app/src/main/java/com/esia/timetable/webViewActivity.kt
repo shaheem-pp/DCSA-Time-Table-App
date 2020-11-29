@@ -15,7 +15,18 @@ class webViewActivity : AppCompatActivity() {
         val myurl = intent.getStringExtra("urltoload")
         webView.loadUrl(myurl!!)
 
+        val noBack = intent.getBooleanExtra("state", false)
+        if (noBack == true) {
+            onBackPressed()
+
+        }
+
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
+
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }

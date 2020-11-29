@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ESIA TimeTable</string>
+    <string name="app_name">TimeTable</string>
 
     <string-array name="departments">
         <item>Select Department</item>

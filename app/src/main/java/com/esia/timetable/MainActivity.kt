@@ -20,17 +20,17 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        checkBoxClick = findViewById(R.id.check_box)
+//        checkBoxClick = findViewById(R.id.check_box)
 
-        val sharedPreference: SharedPreference = SharedPreference(this)
+//        val sharedPreference: SharedPreference = SharedPreference(this)
 
         /*************************************** Buggy Code ***************************************/
 
-        if (deptSelectedItem != null && yearSelectedItem != null) {
-            sharedPreference.getValueString("dept_sp", deptSelectedItem)
-            sharedPreference.getValueString("year_sp", yearSelectedItem)
-            checkLink()
-        }
+//        if (deptSelectedItem != null && yearSelectedItem != null) {
+//            sharedPreference.getValueString("dept_sp", deptSelectedItem)
+//            sharedPreference.getValueString("year_sp", yearSelectedItem)
+//            checkLink()
+//        }
 
         /*************************************** Buggy Code ***************************************/
 //        val sharedPreferences: SharedPreferences = this.getSharedPreferences(
@@ -67,10 +67,15 @@ class MainActivity : AppCompatActivity() {
         }
         text_submit_xml.setOnClickListener {
             checkLink()
-            if (checkBoxClick.isChecked) {
-                sharedPreference.save("dept_sp", deptSelectedItem)
-                sharedPreference.save("year_sp", yearSelectedItem)
-            }
+//            if (checkBoxClick.isChecked) {
+//                sharedPreference.save("dept_sp", deptSelectedItem)
+//                sharedPreference.save("year_sp", yearSelectedItem)
+//            }
+        }
+        text_web_xml.setOnClickListener {
+            val i = Intent(applicationContext, webViewActivity::class.java)
+            i.putExtra("urltoload","https://sias.edu.in")
+            startActivity(i)
         }
     }
 
@@ -93,7 +98,7 @@ class MainActivity : AppCompatActivity() {
             "BSC CS" -> if (yearSelectedItem == "" || yearSelectedItem == "Select Year") {
                 Toast.makeText(this, "Enter your Year", Toast.LENGTH_SHORT).show()
             } else if (yearSelectedItem.equals("1")) {
-                linkMakerFun("https://hadi7653.github.io/timetable/time.html?c=B.Sc.Computer-science&y=1&f=cs")
+                linkMakerFun("http://hadi7653.github.io/timetable/time.html?c=B.Sc.Computer-science&y=1&f=cs")
             } else if (yearSelectedItem.equals("2")) {
                 linkMakerFun("https://hadi7653.github.io/timetable/time.html?c=B.Sc.Computer-science&y=2&f=cs")
             } else if (yearSelectedItem.equals("3")) {
@@ -107,7 +112,6 @@ class MainActivity : AppCompatActivity() {
     private fun linkMakerFun(url: String) {
         val j = Intent(applicationContext, webViewActivity::class.java)
         j.putExtra("urltoload", url)
-        j.putExtra("syllabusPage", true)
         startActivity(j)
     }
 

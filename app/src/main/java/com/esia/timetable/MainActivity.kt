@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 //import com.tapadoo.alerter.Alerter
 import kotlinx.android.synthetic.main.activity_main.*
+
 //import java.text.SimpleDateFormat
 //import java.util.*
 
@@ -30,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 //                .setIcon(R.drawable.applogo)
 //                .show()
 //        }
-
 
 
         checkBoxClick = findViewById(R.id.check_box)
@@ -143,20 +143,20 @@ class MainActivity : AppCompatActivity() {
             "BCA" -> if (yearSelectedItem == "" || yearSelectedItem == "Select Year") {
                 Toast.makeText(this, "Enter your Year", Toast.LENGTH_SHORT).show()
             } else if (yearSelectedItem.equals("1")) {
-                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bca&year=1")
+                linkMakerFun("https://sias.edu.in/timetable/tt.html?classname=bca&year=1")
             } else if (yearSelectedItem.equals("2")) {
-                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bca&year=2")
+                linkMakerFun("https://sias.edu.in/timetable/tt.html?classname=bca&year=2")
             } else if (yearSelectedItem.equals("3")) {
-                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bca&year=3")
+                linkMakerFun("https://sias.edu.in/timetable/tt.html?classname=bca&year=3")
             }
             "BSC CS" -> if (yearSelectedItem == "" || yearSelectedItem == "Select Year") {
                 Toast.makeText(this, "Enter your Year", Toast.LENGTH_SHORT).show()
             } else if (yearSelectedItem.equals("1")) {
-                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bcs&year=1")
+                linkMakerFun("https://sias.edu.in/timetable/tt.html?classname=bcs&year=1")
             } else if (yearSelectedItem.equals("2")) {
-                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bcs&year=2")
+                linkMakerFun("https://sias.edu.in/timetable/tt.html?classname=bcs&year=2")
             } else if (yearSelectedItem.equals("3")) {
-                linkMakerFun("https://aquibe.github.io/e-timetable/tt.html?classname=bcs&year=3")
+                linkMakerFun("https://sias.edu.in/timetable/tt.html?classname=bcs&year=3")
             }
 
         }

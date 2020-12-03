@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+//import com.tapadoo.alerter.Alerter
 import kotlinx.android.synthetic.main.activity_main.*
+//import java.text.SimpleDateFormat
+//import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private var mNotified = false
     var deptSelectedItem: String = ""
     var yearSelectedItem: String = ""
     lateinit var checkBoxClick: CheckBox
@@ -17,6 +21,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportActionBar?.hide()
+//        val simpleDateFormat = SimpleDateFormat("HH:mm:ss z")
+//        val currentDateAndTime: String = simpleDateFormat.format(Date())
+//        if (currentDateAndTime == "09:15:00") {
+//            Alerter.create(this)
+//                .setTitle("Timetable")
+//                .setText("Your class is about to start")
+//                .setIcon(R.drawable.applogo)
+//                .show()
+//        }
+
+
 
         checkBoxClick = findViewById(R.id.check_box)
         var sp_department_xml = findViewById<Spinner>(R.id.sp_department_xml)
@@ -103,8 +118,8 @@ class MainActivity : AppCompatActivity() {
             if (checkBoxClick.isChecked) {
                 sharedPreference.dsave("dept_sp", deptSelectedItem)
                 sharedPreference.ysave("year_sp", yearSelectedItem)
-                val k = Intent(applicationContext,webViewActivity::class.java)
-                k.putExtra("state",true)
+                val k = Intent(applicationContext, webViewActivity::class.java)
+                k.putExtra("state", true)
                 startActivity(k)
             }
         }
@@ -112,10 +127,11 @@ class MainActivity : AppCompatActivity() {
 //            val i = Intent(applicationContext, webViewActivity::class.java)
 //            i.putExtra("urltoload", "https://aquibe.github.io/e-timetable/")
 //            startActivity(i)
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://aquibe.github.io/e-timetable/"))
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("http://sias.edu.in/timetable/"))
             startActivity(i)
         }
     }
+
 
     fun checkLink() {
         when (deptSelectedItem) {
@@ -152,5 +168,9 @@ class MainActivity : AppCompatActivity() {
         j.putExtra("urltoload", url)
         startActivity(j)
     }
+
+//    fun notify() {
+//
+//    }
 
 }

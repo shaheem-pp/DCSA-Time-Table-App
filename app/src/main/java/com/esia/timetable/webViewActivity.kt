@@ -2,9 +2,13 @@ package com.esia.timetable
 
 
 import android.os.Bundle
+import android.view.View
 import android.webkit.WebSettings
 import androidx.appcompat.app.AppCompatActivity
+//import com.tapadoo.alerter.Alerter
 import kotlinx.android.synthetic.main.activity_web_view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class webViewActivity : AppCompatActivity() {
     var noBack: Boolean = false
@@ -30,7 +34,16 @@ class webViewActivity : AppCompatActivity() {
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-
+//        val simpleDateFormat = SimpleDateFormat("HH:mm:ss z")
+//        val currentDateAndTime: String = simpleDateFormat.format(Date())
+//        if (currentDateAndTime == "09:15:00") {
+//            Alerter.create(this)
+//                .setTitle("Timetable")
+//                .setText("Your class is about to start")
+//                .setIcon(R.drawable.applogo)
+//                .setBackgroundColorRes(R.color.teal_200)
+//                .show()
+//        }
 
 //        swipeRefreshLayout.setOnRefreshListener {
 //

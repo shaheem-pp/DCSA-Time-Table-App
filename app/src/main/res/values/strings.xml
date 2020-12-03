@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TimeTable</string>
+    <string name="notification_channel_description">Your class is about to start</string>
 
     <string-array name="departments">
         <item>Select Department</item>
